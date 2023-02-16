@@ -2,9 +2,9 @@ import pandas as pd
 
 
 class DataExtractor:
-    RUTA_JSON_USUARIOS = r'RUTA JSON USUARIOS'
-    RUTA_JSON_RESTAURANTES = r'RUTA JSON RESTAURANTES'
-    RUTA_JSON_REVIEWS = r'RUTA JSON REVIEWS'
+    RUTA_JSON_USUARIOS = r'users.json'
+    RUTA_JSON_RESTAURANTES = r'restaurants.json'
+    RUTA_JSON_REVIEWS = r'reviews.json'
 
     @staticmethod
     def obtenerDataFrameUsuarios():
