@@ -4,11 +4,12 @@ from AlgoritmoVecinosCercanos import AlgoritmoVecinosCercanos
 df_users = DataExtractor.DataExtractor.obtenerDataFrameUsuarios()
 df_restaurants = DataExtractor.DataExtractor.obtenerDataFrameRestaurantes()
 df_ratings = DataExtractor.DataExtractor.obtenerDataFrameReviews()
+df_users_operacionales = DataExtractor.DataExtractor.obtenerDataFrameUsuariosOperacionales()
 
-algoritmoVecinosCercanos = AlgoritmoVecinosCercanos(df_ratings, df_users, df_restaurants)
+
+algoritmoVecinosCercanos = AlgoritmoVecinosCercanos(df_ratings, df_users, df_restaurants, df_users_operacionales)
 algoritmoVecinosCercanos.ejecutarAlgoritmo()
-restaurantesRecomendados = algoritmoVecinosCercanos.obtenerRestaurantesRecomendados('117867348882605384904', 3)
+algoritmoVecinosCercanos.almacenarRecomendacionesEnBD()
 
-for i, idRes in restaurantesRecomendados:
-    restaurante = df_restaurants[df_restaurants['id'] == (idRes + 1)]
-    print(restaurante['name'])
+
+
