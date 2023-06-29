@@ -17,8 +17,6 @@ class RecommendationsCreator:
     def guardarRecomendaciones(self):
         hilos = []
         self.limpiarRecomendaciones()
-        print(self.df_users_operacionales[0])
-        print(self.df_users[0])
         for i in range(len(self.df_users_operacionales)):
             for j in range(len(self.df_users)):
                 if self.df_users[j]['oid'] == self.df_users_operacionales[i]['oid']:
@@ -32,7 +30,6 @@ class RecommendationsCreator:
 
     def guardarRecomendacionesUsuario(self, usuario):
         hilos = []
-        #idArtificialUsuario = int(usuario.iloc[0]['id'])
         idArtificialUsuario = int(usuario['idArtificial'])
         idBDUsuario = str(usuario['oid'])
         recomendacionesUsuario = self.matrizRecomendaciones.argsort()[idArtificialUsuario]
@@ -40,9 +37,7 @@ class RecommendationsCreator:
             for j in range(len(self.df_restaurants)):
                 if(self.df_restaurants[j]['id'] == idArtificialRestaurante):
                     idBDRestaurante = str(self.df_restaurants[j]['oid'])
-                    #idBDRestaurante = str((self.df_restaurants[self.df_restaurants['id'] == idArtificialRestaurante]).iloc[0]["_id"])
                     indice = self.matrizRecomendaciones[idArtificialUsuario][idArtificialRestaurante]
-                    #print(idBDRestaurante, idBDUsuario, indice)
                     hilo = threading.Thread(self.insertarRecomendacionBD(idBDUsuario, idBDRestaurante, indice))
                     hilos.append(hilo)
                     hilo.start()
