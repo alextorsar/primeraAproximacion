@@ -20,8 +20,7 @@ class AlgoritmoVecinosCercanosItemBased:
         knn = NearestNeighbors(metric='cosine', algorithm='brute')
         knn.fit(ratings)
         self.distances, self.indices = knn.kneighbors(ratings, n_neighbors=1643)
-        #self.distances, self.indices = knn.kneighbors(ratings, n_neighbors=1827)
 
     def almacenarRecomendacionesEnBD(self):
-        creadorRecomendaciones =  CreadorRecomendacionesItemBased(self.df_restaurants)
-        creadorRecomendaciones.ejecutarInsercion(self.distances, self.indices)
+        self.creadorRecomendaciones = CreadorRecomendacionesItemBased(self.df_restaurants)
+        self.creadorRecomendaciones.ejecutarInsercion(self.distances, self.indices)
