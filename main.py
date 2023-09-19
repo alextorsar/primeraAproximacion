@@ -7,7 +7,6 @@ df_restaurants = DataExtractor.DataExtractor.obtenerDataFrameRestaurantes()
 df_ratings = DataExtractor.DataExtractor.obtenerDataFrameReviews()
 df_users_operacionales = DataExtractor.DataExtractor.obtenerDataFrameUsuariosOperacionales()
 
-print("hola")
 
 algoritmos = []
 algoritmoVecinosCercanosUserBased = AlgoritmoVecinosCercanosUserBased(df_ratings, df_users, df_restaurants, df_users_operacionales)

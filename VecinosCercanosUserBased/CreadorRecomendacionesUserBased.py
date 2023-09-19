@@ -33,7 +33,7 @@ class RecommendationsCreator:
         idArtificialUsuario = int(usuario['idArtificial'])
         idBDUsuario = str(usuario['oid'])
         recomendacionesUsuario = self.matrizRecomendaciones.argsort()[idArtificialUsuario]
-        for i, idArtificialRestaurante in enumerate(recomendacionesUsuario[-1912:]):
+        for i, idArtificialRestaurante in enumerate(recomendacionesUsuario[(-1*len(self.df_restaurants)):]):
             for j in range(len(self.df_restaurants)):
                 if(self.df_restaurants[j]['id'] == idArtificialRestaurante):
                     idBDRestaurante = str(self.df_restaurants[j]['oid'])
@@ -48,15 +48,11 @@ class RecommendationsCreator:
 
     def insertarRecomendacionBD(self, idBDUsuario, idBDRestaurante, indice):
         cursor = self.connection.cursor()
-        #nuevoId = idBDUsuario[10:34]
-        #nuevoIdRestaurante = idBDRestaurante[10:34]
         try:
             sql = "INSERT INTO `esrecomendadovecinoscercanos` (`usuario_idUsuario`, `restaurante_idrestaurante`, `indiceRecomendacion`) VALUES (%s, %s, %s)"
             cursor.execute(sql, (
                 idBDUsuario,
                 idBDRestaurante,
-                #nuevoId,
-                #nuevoIdRestaurante,
                 indice
             ))
             self.connection.commit()
